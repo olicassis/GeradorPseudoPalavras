@@ -17,13 +17,7 @@ def min_threshold_letras(min, palavra):
         return True
     else:
         return False
-
-def presente_lista(lista, palavra):
-    if palavra in lista:
-        return True
-    else:
-        return False
-
+        
 def canonicidade(palavra):
     t = len(palavra)
     if t % 2 != 0 and vogal(palavra[0]):
