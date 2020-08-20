@@ -20,7 +20,7 @@ def min_threshold_letras(min, palavra):
         
 def canonicidade(palavra):
     t = len(palavra)
-    if t % 2 != 0 and vogal(palavra[0]):
+    if t % 2 != 0 or vogal(palavra[0]):
         return False
     else:
         for i in range(t):
