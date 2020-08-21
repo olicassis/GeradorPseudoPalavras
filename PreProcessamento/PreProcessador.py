@@ -6,17 +6,22 @@ arq = open("brazilian", 'r')
 palavras = arq.read().split('\n')
 arq.close()
 nova_lista_palavras = []
+print(len(palavras))
 
 # Limpando as palavras da lista e gravando os dados em um arquivo csv
-with open("palavrasProcessadas.csv",'w') as arq:
-    arq.write("palavra,canonicidade,tonicidade\n")
+#with open("palavrasProcessadas.csv",'w') as arq:
+    #arq.write("palavra,canonicidade,tonicidade\n")
     # Filtra as palavras desejadas (sem letras maiúsculas, sem hífen e com o mínimo de 3 letras)
-    for p in palavras:
-        if not fa.tem_maiuscula(p) and fa.min_threshold_letras(3, p):
-            if not fa.tem_hifen(p):
-                nova_lista_palavras.append(p)
-                s = p + ',' + str(fa.canonicidade(p)) + '\n'
-                arq.write(s)
-
-    print(nova_lista_palavras)
-    print(len(nova_lista_palavras))
+for p in palavras:
+    if not fa.maiuscula(p):
+        if fa.min_threshold_letras(3, p):
+            if not fa.hifen(p): 
+                if not fa.cz_ps(p):
+                     if not fa.tres_consoantes(p):
+                          if not fa.prefixos(p):
+                                if not fa.hiato_final_palavra(p):
+                                    if not fa.consoante_consoante_m(p,1):
+                                        if fa.validar_formato(p):
+                                            nova_lista_palavras.append(p)
+                                            
+print(len(nova_lista_palavras))
