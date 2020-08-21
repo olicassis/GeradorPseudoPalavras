@@ -23,10 +23,10 @@ palavras = nova_lista_palavras
 print(len(nova_lista_palavras))
 nova_lista_palavras = []
 # Retira as palavras que a sílaba foi dividida incorretamente (possui sílaba sem vogal)
+# ou que não foi classificado quanto a tonicidade
 for p in palavras:
-    if fa.verifica_silabas(fa.separa_em_silabas(p)):
+    if fa.tonicidade(p):
         nova_lista_palavras.append(palavras)
 palavras = nova_lista_palavras
-print(len(nova_lista_palavras))
+#print(len(nova_lista_palavras))
 nova_lista_palavras = []
-# Retira as palavras que não conseguiram ser classificadas quanto à tonicidade

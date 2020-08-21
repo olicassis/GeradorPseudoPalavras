@@ -317,7 +317,7 @@ def tonicidade(palavra):
         t = len(silabas) 
         if tem_acento(palavra)[0]:
             for i in range(t):
-                if (t-1-i) > 0:
+                if (t-1-i) >= 0:
                     if tem_acento(silabas[t-1-i])[0]:
                         return classificacao[i]
         else:
