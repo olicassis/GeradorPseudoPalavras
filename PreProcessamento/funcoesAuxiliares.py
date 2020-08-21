@@ -127,20 +127,6 @@ def hiato_final_palavra(palavra):
                 return True
     return False
 
-"""def cz_ps(palavra):
-    padroes = ['cz','ps']
-    for p in padroes:
-        if re.search(p,palavra) is not None:
-            return True
-    return False"""
-
-"""def tres_consoantes(palavra):
-    v_letras = representacao_palavra(palavra)
-    if re.search("CCC",v_letras)is not None:
-        return True
-    else:
-        return False"""
-
 def prefixos(palavra):
     padroes = ["sub","ab","ad"]
     for p in padroes:
@@ -152,14 +138,6 @@ def prefixos(palavra):
                 return False
         else:
             return False
-
-"""def consoante_consoante_m(palavra,m):
-    v_letras = representacao_palavra(palavra)
-    aux = len(re.findall("CC",palavra))
-    if aux > m:
-        return True
-    else:
-        return False"""
 
 def silaba_tem_vogal(silaba):
     vogais = "aeiouáéíóúâêôã"
