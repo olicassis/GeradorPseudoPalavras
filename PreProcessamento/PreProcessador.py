@@ -10,7 +10,7 @@ nova_lista_palavras = []
 # Limpando as palavras da lista e gravando os dados em um arquivo csv
 #with open("palavrasProcessadas.csv",'w') as arq:
     #arq.write("palavra,canonicidade,tonicidade\n")
-# Filtra as palavras desejadas (sem letras maiúsculas, sem hífen e com o mínimo de 3 letras)
+# Filtra as palavras desejadas
 for p in palavras:
     if not fa.maiuscula(p):
         if fa.min_threshold_letras(3, p):
@@ -19,3 +19,14 @@ for p in palavras:
                     if not fa.hiato_final_palavra(p):
                         if fa.validar_formato(p):
                             nova_lista_palavras.append(p)
+palavras = nova_lista_palavras
+print(len(nova_lista_palavras))
+nova_lista_palavras = []
+# Retira as palavras que a sílaba foi dividida incorretamente (possui sílaba sem vogal)
+for p in palavras:
+    if fa.verifica_silabas(fa.separa_em_silabas(p)):
+        nova_lista_palavras.append(palavras)
+palavras = nova_lista_palavras
+print(len(nova_lista_palavras))
+nova_lista_palavras = []
+# Retira as palavras que não conseguiram ser classificadas quanto à tonicidade

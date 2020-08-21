@@ -28,10 +28,14 @@ hiatos_vogais_duplas = [
                         'ea','eo','ia','ie','io','oa','oe','ua','ue','ui','uo', # hiatos
                         'aa','ee','ii','oo','uu' # vogais duplas
                        ]
-formatos_hiatos_vogais_duplas = ['CVVCV','VVCV','CVCVVCV','CVV','CVCCVVVCV','CVCVVVCV']
+formatos_hiatos_vogais_duplas = [
+                                    'CVVCV','VVCV','CVCVVCV','CVV','CVCCVVVCV',
+                                    'CVCVVVCV','CVVC','VCCVCVV'
+                                ]
 formatos_hiatos_vogais_duplas_hifenizados = [
                                                 'CV-V-CV','V-V-CV','CV-CV-V-CV','CV-V',
-                                                'CVC-CV-VV-CV','CV-CVV-V-CV'    
+                                                'CVC-CV-VV-CV','CV-CVV-V-CV','CV-VC',
+                                                'VC-CV-CV-V'    
                                             ]
 # Qu ou Gu
 padroes_gu_qu = ['gu','qu']
@@ -50,11 +54,12 @@ padroes_consoante_indivisivel = [
               ]
 formatos_consoante_indivisivel = [
                                     'CCVCV','CVCCV','CVCVCCV','CCVCCV','VCCVCV',
-                                    'CCVVCCV','CVCCVCV','CVCCVC'
+                                    'CCVVCCV','CVCCVCV','CVCCVC','CCVCVCV'
                                  ]
 formatos_consoante_indivisivel_hifenizados = [
                                                 'CCV-CV','CV-CCV','CV-CV-CCV','CCV-CCV',
-                                                'V-CCV-CV','CCV-VC-CV','CV-CCV-CV','CV-CCVC'
+                                                'V-CCV-CV','CCV-VC-CV','CV-CCV-CV','CV-CCVC',
+                                                'CCV-CV-CV'
                                              ]
 # Cz ou ps
 padroes_cz_ps = ['cz','ps']
@@ -66,11 +71,13 @@ formatos_cz_ps_hifenizados = [
 # Outros formatos
 outros_formatos = [
                 'CVCVC','VCV','VCCVCV','VCCVCVCVC','CVCCV','CVCCVCV','CVCCVCCV',
-                'CVVCCV','CVCCVC','CVCVCCV','CVCCVCVV','CVCCCVCVV','VCVCVCV'
+                'CVVCCV','CVCCVC','CVCVCCV','CVCCVCVV','CVCCCVCVV','VCVCVCV',
+                'CVCCVCCCV','CVVC'
                ]
 outros_formatos_hifenizados = [
                 'CV-CVC','V-CV','VC-CV-CV','VC-CV-CV-CVC','CVC-CV','CVC-CV-CV','CVC-CVC-CV',
-                'CVVC-CV','CVC-CVC','CV-CVC-CV','CVC-CV-CV-V','CVC-CCV-CV-V','V-CV-CV-CV'
+                'CVVC-CV','CVC-CVC','CV-CVC-CV','CVC-CV-CV-V','CVC-CCV-CV-V','V-CV-CV-CV',
+                'CVC-CVC-CCV','CV-VC'
                ]
 
 ## Contém as funções auxiliares para a leitura das palavras desejadas
@@ -146,8 +153,14 @@ def silaba_tem_vogal(silaba):
             return True
     return False
 
-# --------------------------------------------------------------------------------------------
-# Funções que definem os formatos das palavras que serão lidas
+def verifica_silabas(silabas):
+    for silaba in silabas:
+        if not silaba_tem_vogal(silaba):
+            return False
+    return True
+
+#--------------------------------------------------------------------------------------------------#
+## Funções que definem os formatos das palavras que serão lidas
 def tem_tritongo(palavra):
     return verificar_formato(tritongos,formatos_tritongo,palavra)
 
@@ -203,7 +216,7 @@ def validar_formato(palavra):
  
     return False
 
-# Função que retorna uma determinada palavra dividida em sílabas
+## Função que retorna uma determinada palavra dividida em sílabas
 def separa_formato(palavra,formato,silabas,aux):
     count = 0
     for i in formato:
@@ -262,4 +275,58 @@ def separa_em_silabas(palavra):
         if finder[0]:
             separa_formato(palavra,outros_formatos_hifenizados[finder[1]],silabas,aux)
             return silabas 
-    return silabas
+    return silabas if verifica_silabas(silabas) else []
+
+## Funções para classificar a palavra quanto sua tonicidade
+def tem_acento(palavra):
+    acentos = 'áéíóúâêô'
+    for acento in acentos:
+        re_match_object = re.search(acento,palavra)
+        if re_match_object is not None:
+            return True,re_match_object.start()
+    return False,None
+
+def oxitona(silaba):
+    terminacoes = ['r','l','z','x','i','u','im','um','om']
+    for terminacao in terminacoes:
+        if verificar_terminacao(silaba,terminacao):
+            return True
+    return False
+
+def paroxitona(silaba):
+    terminacoes = ['o','os','a','as','e','es']
+    for terminacao in terminacoes:
+        if verificar_terminacao(silaba,terminacao):
+            return True
+    return False
+
+def verificar_terminacao(silaba,terminacao):
+    t_terminacao = len(terminacao)
+    t_silaba = len(silaba)
+    if t_terminacao > t_silaba:
+        return False
+    if t_terminacao == t_silaba:
+        return terminacao in silaba
+    if t_terminacao < t_silaba:
+        return terminacao == silaba[-t_terminacao:]
+
+def tonicidade(palavra):
+    classificacao = ["oxítona","paraxítona","proparoxítona","NA"]
+    silabas = separa_em_silabas(palavra)
+    if silabas != []:
+        t = len(silabas) 
+        if tem_acento(palavra)[0]:
+            for i in range(t):
+                if (t-1-i) > 0:
+                    if tem_acento(silabas[t-1-i])[0]:
+                        return classificacao[i]
+        else:
+            if oxitona(silabas[t-1]):
+                return classificacao[0]
+            else:
+                if paroxitona(silabas[t-1]):
+                    return classificacao[1]
+                else:
+                    return classificacao[3]  
+    else:
+        return classificacao[3]  
