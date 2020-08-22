@@ -1,5 +1,5 @@
 # Imports
-import funcoesAuxiliares as fa
+import pre_processamento.funcoesAuxiliares as fa
 
 # Abrindo arquivo para leitura e lendo suas palavras
 arq = open("brazilian", 'r')

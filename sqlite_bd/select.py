@@ -1,12 +1,11 @@
 # Imports
 import sqlite3 as sql
 
-def select_palavras(canonicidade,tonicidade):
+def select_palavras(canonicidade,tonicidade,path):
     lista_palavras = []
     sql_select = "select id from palavra where canonicidade = '{}' and tonicidade = '{}'".format(canonicidade,tonicidade)
-    print(sql_select)
     # Conectando ao banco de dados
-    con = sql.connect('palavras.db')
+    con = sql.connect(path)
     # Cursor
     cur = con.cursor()
     # Executando a query

@@ -1,0 +1,23 @@
+<form action="/listarPalavras" method="POST"> 
+    Escolha a canonicidade da palavra: 
+    <br> 
+    <br> 
+    <div class="form-group"> 
+        <input type="radio" id="canonic" name="canonicity" value="True"> 
+        <label for="True">Canônica</label><br> 
+        <input type="radio" id="not_canonic" name="canonicity" value="False"> 
+        <label for="False">Não-Canônica</label><br> 
+    </div> 
+    Escolha a tonicidade da palavra: 
+    <br/> 
+    <br/> 
+    <div class="form-group">
+        <input type="radio" id="proparoxitone" name="tonicity" value="proparoxítona">
+        <label for="True">Proparoxítona</label><br>
+        <input type="radio" id="paroxitone" name="tonicity" value="paroxítona">
+        <label for="False">Paroxítona</label><br>
+        <input type="radio" id="oxitone" name="tonicity" value="oxítona">
+        <label for="False">Oxítona</label><br>
+    </div>
+    <button type="submit" class="btn btn-default">Buscar Palavras</button>
+</form>

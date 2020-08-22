@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Gerador de Pseudo Palavras</title>
+        <meta charset="UTF-8">
+        <meta name="description" content="Gerador de pseudo palavras">
+        <meta name="keywords" content="gerador,pseudo-palavras,avaliação">
+        <meta name="author" content="eliascassis">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="../static/CSS/template.css">
+    </head>
+    <body class="text-center">
+        <div class="container">
+            <div class="header">
+                <h3 id="app_title">Gerador de Pseudo-Palavras</h3>
+            </div>
+            <br>
+            <div class="intro mt-2 col-md-12"> 
+                O sistema gera pseudo-palavras a partir de outras palavras da língua portuguesa.
+                Para gerar pseudo-palavras basta escolher as características das palavras desejadas.
+                As características disponíveis são: canonicidade (se a palavra é canônica, i.e., possui
+                sílabas no formato CV, ou não) e tonicidade (se a palavra é proparoxítona, paroxítona
+                ou oxítona).
+            </div>
+            <br>
+            <div class="flow mt-2 col-md-12">
+                {% include myString %}
+            </div>
+            <div class="footer mt-2 col-md-12 page-footer">
+                <p>&copy; eliascassis</p>
+            </div>
+        </div>
+    </body>
+</html>
