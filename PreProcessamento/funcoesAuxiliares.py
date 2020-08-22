@@ -311,7 +311,7 @@ def verificar_terminacao(silaba,terminacao):
         return terminacao == silaba[-t_terminacao:]
 
 def tonicidade(palavra):
-    classificacao = ["oxítona","paraxítona","proparoxítona","NA"]
+    classificacao = ["oxítona","paroxítona","proparoxítona","NA"]
     silabas = separa_em_silabas(palavra)
     if silabas != []:
         t = len(silabas) 
