@@ -11,3 +11,8 @@
     background-color: black;
     color:yellow;
 }
+
+.btn{
+    border-width: 10%;
+    border-radius: 10%;
+}

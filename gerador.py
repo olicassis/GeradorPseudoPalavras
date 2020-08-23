@@ -22,11 +22,13 @@ def gerar_silabas(palavras):
     for p in palavras:
         aux_silabas = fA.separa_em_silabas(p)
         for s in aux_silabas:
-            if fA.canonicidade(s) and s not in silabas_canonicas:
-                silabas_canonicas.append(s)
-            else:
-                if s not in silabas_nao_canonicas:
-                    silabas_nao_canonicas.append(s)
+            if not fA.tem_acento(s)[0]:
+                if fA.canonicidade(s):
+                     if s not in silabas_canonicas:
+                        silabas_canonicas.append(s)
+                else:
+                    if s not in silabas_nao_canonicas:
+                        silabas_nao_canonicas.append(s)
     return silabas_canonicas,silabas_nao_canonicas
 
 def pseudo_palavra_valida(pseudo_palavra,pseudo_palavras):
@@ -92,4 +94,4 @@ def get_pseudo_palavras(palavra,n_pseudo,silabas):
     else:
         i = 5 + randint(0,99) % 3
         pseudo_palavras_proparoxitona(pseudo_palavras,n_pseudo,silabas,i,palavra_hifenizada)
-    print(pseudo_palavras)
+    return pseudo_palavras

@@ -2,7 +2,7 @@
 import pre_processamento.funcoesAuxiliares as fa
 
 # Abrindo arquivo para leitura e lendo suas palavras
-arq = open("brazilian", 'r')
+arq = open("../files/brazilian", 'r')
 palavras = arq.read().split('\n')
 arq.close()
 nova_lista_palavras = []
@@ -26,7 +26,7 @@ for p in palavras:
         nova_lista_palavras.append(p)
 del palavras
 # Gravando os dados em um arquivo csv
-with open("palavrasProcessadas.csv",'w') as arq:
+with open("../files/palavrasProcessadas.csv",'w') as arq:
     arq.write("palavra,canonicidade,tonicidade\n")
     for p in nova_lista_palavras:
         string = p + ',' + str(fa.canonicidade(p)) + ',' + fa.tonicidade(p) + '\n'
