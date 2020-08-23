@@ -18,3 +18,16 @@ def select_palavras(canonicidade,tonicidade,path):
     con.close()
     # Retorna as palavras encontradas
     return lista_palavras
+
+def palavra_na_lista(palavra,path):
+    sql_select = 'select id from palavra where id = "{}"'.format(palavra)
+    # Conectando ao banco de dados
+    con = sql.connect(path)
+    # Cursor
+    cur = con.cursor()
+    # Executanado a query
+    cur.execute(sql_select)
+    palavra = cur.fetchall()
+    # Fechando a conexão com o banco
+    con.close()
+    return True if palavra != [] else False
