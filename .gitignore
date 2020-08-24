@@ -1,2 +1,5 @@
 *.pyc
 test.py
+words_list.html
+*.xlsx
+*csv
