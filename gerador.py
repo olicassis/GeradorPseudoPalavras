@@ -9,6 +9,17 @@ path = "sqlite_bd/palavras.db"
 
 ## Recuperando palavras com as características desejadas
 def busca_palavras(canonicidade,tonicidade):
+    """Busca palavras com as canonicidade e tonicidade dadas.
+        Sintaxe:
+            palavras = busca_palavras(canonicidade,tonicidade)
+        Descrição:
+            Busca palavras com as canonicidade e tonicidade que foram informadas.
+        Args:
+            canonicidade (string): Se a palavra é ou não canônica.
+            tonicidade (string): Se a palavra é proparoxítona, paroxítona ou oxítona
+        Retornos:
+            palavras (list): Lista de palavras
+    """
     # Extrai as palavras
     lista_palavras = sp(canonicidade,tonicidade,path)
     # Inicializa gerador de números randômicos e embaralha a lista de palavras
@@ -17,6 +28,17 @@ def busca_palavras(canonicidade,tonicidade):
     return lista_palavras[:30]
 
 def gerar_silabas(palavras):
+    """Gera sílabas para o processo de pseudo-palavras.
+        Sintaxe:
+            (silabas_canonicas,silabas_nao_canonicas) = gerar_silabas(palavras)
+        Descrição:
+            Gera sílabas para o processo de formação de pseudo-palavras.
+        Args:
+            palavras (list): Lista de palavras base desejadas.
+        Retornos:
+            silabas_canonicas (list): Lista de sílabas canônicas.
+            silabas_nao_canonicas (list): Lista de síalbas não-canônicas.
+    """
     silabas_canonicas = []
     silabas_nao_canonicas = []
     for p in palavras:
@@ -32,10 +54,34 @@ def gerar_silabas(palavras):
     return silabas_canonicas,silabas_nao_canonicas
 
 def pseudo_palavra_valida(pseudo_palavra,pseudo_palavras):
+    """Verificador da validade de uma pseudo-palavra.
+        Sintaxe:
+            verificacao = pseudo_palavra_valida(palavras)
+        Descrição:
+            Verifica se uma pseudo-palavra é ou não válida.
+        Args:
+            pseudo_palavra (string): Pseudo-palavra desejada.
+        Retornos:
+            verificacao (bool): True (se a pseudo-palavra é válida), False (se a pseudo-palavra não é válida).
+    """
     return fA.verifica_silabas(fA.separa_em_silabas(pseudo_palavra)) and not pl(pseudo_palavra,path) \
         and pseudo_palavra not in pseudo_palavras
 
 def pseudo_palavras_oxitona(pseudo_palavras,n_pseudo,silabas,i,palavra_hifenizada):
+    """Aplica o algoritmo de geração de pseudo-palavras para palavras oxítonas
+        Sintaxe:
+            pseudo_palavras_oxitona(pseudo_palavras,n_pseudo,silabas,i,palavra_hifenizada)
+        Descrição:
+            Gera pseudo-palavras oxítonas.
+        Args:
+            pseudo_palavras (list): Lista de pseudo-palavras.
+            n_pseudo (int): Número de pseudo-palavras desejado.
+            silabas (list): Sílabas que podem compor a pseudo-palavra.
+            i (int): Quantidade de sílabas desejadas.
+            palavra_hifenizada (list): Sílabas da palavra base. 
+        Retornos:
+            None: None
+    """
     aux_pseudo_palavras = ''
     while len(pseudo_palavras) < n_pseudo:
         shuffle(silabas,random)
@@ -49,6 +95,20 @@ def pseudo_palavras_oxitona(pseudo_palavras,n_pseudo,silabas,i,palavra_hifenizad
         aux_pseudo_palavras = ''
 
 def pseudo_palavras_paroxitona(pseudo_palavras,n_pseudo,silabas,i,palavra_hifenizada):
+    """Aplica o algoritmo de geração de pseudo-palavras para palavras paroxítonas
+        Sintaxe:
+            pseudo_palavras_oxitona(pseudo_palavras,n_pseudo,silabas,i,palavra_hifenizada)
+        Descrição:
+            Gera pseudo-palavras paroxítonas.
+        Args:
+            pseudo_palavras (list): Lista de pseudo-palavras.
+            n_pseudo (int): Número de pseudo-palavras desejado.
+            silabas (list): Sílabas que podem compor a pseudo-palavra.
+            i (int): Quantidade de sílabas desejadas.
+            palavra_hifenizada (list): Sílabas da palavra base. 
+        Retornos:
+            None: None
+    """
     aux_pseudo_palavras = ''
     while len(pseudo_palavras) < n_pseudo:
         shuffle(silabas,random)
@@ -63,6 +123,20 @@ def pseudo_palavras_paroxitona(pseudo_palavras,n_pseudo,silabas,i,palavra_hifeni
         aux_pseudo_palavras = ''
 
 def pseudo_palavras_proparoxitona(pseudo_palavras,n_pseudo,silabas,i,palavra_hifenizada):
+    """Aplica o algoritmo de geração de pseudo-palavras para palavras proparoxítonas
+        Sintaxe:
+            pseudo_palavras_oxitona(pseudo_palavras,n_pseudo,silabas,i,palavra_hifenizada)
+        Descrição:
+            Gera pseudo-palavras proparoxítonas.
+        Args:
+            pseudo_palavras (list): Lista de pseudo-palavras.
+            n_pseudo (int): Número de pseudo-palavras desejado.
+            silabas (list): Sílabas que podem compor a pseudo-palavra.
+            i (int): Quantidade de sílabas desejadas.
+            palavra_hifenizada (list): Sílabas da palavra base. 
+        Retornos:
+            None: None
+    """
     aux_pseudo_palavras = ''
     while len(pseudo_palavras) < n_pseudo:
         shuffle(silabas,random)
@@ -78,6 +152,18 @@ def pseudo_palavras_proparoxitona(pseudo_palavras,n_pseudo,silabas,i,palavra_hif
         aux_pseudo_palavras = ''
         
 def get_pseudo_palavras(palavra,n_pseudo,silabas):
+    """Retorna pseudo-palavras
+        Sintaxe:
+            pseudo_palavras = pseudo_palavras_oxitona(pseudo_palavras,n_pseudo,silabas,i,palavra_hifenizada)
+        Descrição:
+            Retorna pseudo-palavras relacionadas com a palavra base desejada.
+        Args:
+            palavra (string): Palavra desejada.
+            n_pseudo (int): Número de pseudo-palavras desejado.
+            silabas (list): Sílabas que podem compor a pseudo-palavra. 
+        Retornos:
+            pseudo_palavras (list): Lista de pseudo-palavras formadas.
+    """
     pseudo_palavras = []
     palavra_hifenizada = fA.separa_em_silabas(palavra)
     seed(version=2)
