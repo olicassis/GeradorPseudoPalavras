@@ -101,7 +101,7 @@ def representacao_palavra(palavra):
     return v_letras
 
 def hifen(palavra):
-    """Verificador da presença de hífen na palavra
+    """Verificador da presença de hífen na palavra.
         Sintaxe:
             verificacao = hifen(palavra)
         Descrição:
@@ -117,7 +117,7 @@ def hifen(palavra):
         return False
 
 def maiuscula(palavra):
-    """Verificador da presença de letra maiúscula na palavra
+    """Verificador da presença de letra maiúscula na palavra.
         Sintaxe:
             verificacao = maiuscula(palavra)
         Descrição:
@@ -134,7 +134,7 @@ def maiuscula(palavra):
     return False
 
 def min_threshold_letras(min, palavra):
-    """Verificador do número mínimo de letras de uma palavra
+    """Verificador do número mínimo de letras de uma palavra.
         Sintaxe:
             verificacao = min_threshold(palavra)
         Descrição:
@@ -151,7 +151,7 @@ def min_threshold_letras(min, palavra):
         return False
         
 def canonicidade(palavra):
-    """Verificador da canonicidade de uma palavra
+    """Verificador da canonicidade de uma palavra.
         Sintaxe:
             verificacao = canonicidade(palavra)
         Descrição:
@@ -171,7 +171,7 @@ def canonicidade(palavra):
         return True
 
 def vogal(letra):
-    """Verificador da natureza da letra
+    """Verificador da natureza da letra.
         Sintaxe:
             verificacao = vogal(letra)
         Descrição:
@@ -187,7 +187,7 @@ def vogal(letra):
         return False
 
 def hiato_final_palavra(palavra):
-    """Verificador da presença de hiato no final de uma palavra
+    """Verificador da presença de hiato no final de uma palavra.
         Sintaxe:
             verificacao = hiato_final_palavra(palavra)
         Descrição:
@@ -206,7 +206,7 @@ def hiato_final_palavra(palavra):
     return False
 
 def prefixos(palavra):
-    """Verificador da presença de prefixos conhecidos na palavra
+    """Verificador da presença de prefixos conhecidos na palavra.
         Sintaxe:
             verificacao = prefixos(palavra)
         Descrição:
@@ -228,7 +228,7 @@ def prefixos(palavra):
             return False
 
 def silaba_tem_vogal(silaba):
-    """Verificador da presença de vogal na sílaba
+    """Verificador da presença de vogal na sílaba.
         Sintaxe:
             verificacao = silaba_tem_vogal(palavra)
         Descrição:
@@ -245,7 +245,7 @@ def silaba_tem_vogal(silaba):
     return False
 
 def verifica_silabas(silabas):
-    """Verificador da presença de vogal nas sílabas da palavra
+    """Verificador da presença de vogal nas sílabas da palavra.
         Sintaxe:
             verificacao = verifica_silabas(palavra)
         Descrição:
@@ -263,7 +263,7 @@ def verifica_silabas(silabas):
 #--------------------------------------------------------------------------------------------------#
 ## Funções que definem os formatos das palavras que serão lidas
 def tem_tritongo(palavra):
-    """Verificador da presença de tritongo na palavra
+    """Verificador da presença de tritongo na palavra.
         Sintaxe:
             verificacao = tem_tritongo(palavra)
         Descrição:
@@ -276,7 +276,7 @@ def tem_tritongo(palavra):
     return verificar_formato(tritongos,formatos_tritongo,palavra)
 
 def tem_ditongo(palavra):
-    """Verificador da presença de ditongo na palavra
+    """Verificador da presença de ditongo na palavra.
         Sintaxe:
             verificacao = tem_ditongo(palavra)
         Descrição:
@@ -289,7 +289,7 @@ def tem_ditongo(palavra):
     return verificar_formato(ditongos_decrescentes,formatos_ditongo,palavra)
 
 def tem_hiato_vogais_duplas(palavra):
-    """Verificador da presença de hiatos ou vogais duplas na palavra
+    """Verificador da presença de hiatos ou vogais duplas na palavra.
         Sintaxe:
             verificacao = tem_hiato_vogais_duplas(palavra)
         Descrição:
@@ -302,7 +302,7 @@ def tem_hiato_vogais_duplas(palavra):
     return verificar_formato(hiatos_vogais_duplas,formatos_hiatos_vogais_duplas,palavra)
 
 def tem_gu_qu(palavra):
-    """Verificador da presença de gu ou qu na palavra
+    """Verificador da presença de gu ou qu na palavra.
         Sintaxe:
             verificacao = tem_gu_qu(palavra)
         Descrição:
@@ -315,7 +315,7 @@ def tem_gu_qu(palavra):
     return verificar_formato(padroes_gu_qu,formatos_gu_qu,palavra)
 
 def tem_consoante_indivisivel(palavra):
-    """Verificador da presença de um padrão indivisível de encontros consonantais na palavra
+    """Verificador da presença de um padrão indivisível de encontros consonantais na palavra.
         Sintaxe:
             verificacao = tem_consoante_indivisivel(palavra)
         Descrição:
@@ -328,7 +328,7 @@ def tem_consoante_indivisivel(palavra):
     return verificar_formato(padroes_consoante_indivisivel,formatos_consoante_indivisivel,palavra)
 
 def tem_cz_ps(palavra):
-    """Verificador da presença de cz ou ps na palavra
+    """Verificador da presença de cz ou ps na palavra.
         Sintaxe:
             verificacao = tem_cz_ps(palavra)
         Descrição:
@@ -341,7 +341,7 @@ def tem_cz_ps(palavra):
     return verificar_formato(padroes_cz_ps,formatos_cz_ps,palavra)
 
 def tem_outros_formatos(palavra):
-    """Verificador da presença de outros formatos na palavra
+    """Verificador da presença de outros formatos na palavra.
         Sintaxe:
             verificacao = tem_outros_formatos(palavra)
         Descrição:
@@ -359,7 +359,7 @@ def tem_outros_formatos(palavra):
     return (False,None)
 
 def verificar_formato(padroes,formatos, palavra):
-    """Verificador da validade do formato de uma palavra
+    """Verificador da validade do formato de uma palavra.
         Sintaxe:
             (verificador,indice_formato) = verificar_formato(padroes,formatos,palavra)
         Descrição:
@@ -382,7 +382,7 @@ def verificar_formato(padroes,formatos, palavra):
     return (False,None)
 
 def validar_formato(palavra):
-    """Verificador do formato de uma palavra
+    """Verificador do formato de uma palavra.
         Sintaxe:
             verificacao = validar_formato(palavra)
         Descrição:
@@ -433,7 +433,7 @@ def separa_formato(palavra,formato,silabas,aux):
     silabas.append(aux)
 
 def separa_em_silabas(palavra):
-    """Separador de palavra em sílabas
+    """Separador de palavra em sílabas.
         Sintaxe:
             silabas = separa_em_silabas(palavra)
         Descrição:
@@ -493,7 +493,7 @@ def separa_em_silabas(palavra):
 
 ## Funções para classificar a palavra quanto sua tonicidade
 def tem_acento(palavra):
-    """Verificador da presença de acento na palavra
+    """Verificador da presença de acento na palavra.
         Sintaxe:
             verificacao = tem_acento(palavra)
         Descrição:
@@ -511,7 +511,7 @@ def tem_acento(palavra):
     return False,None
 
 def oxitona(silaba):
-    """Verifica se a sílaba é oxítona
+    """Verifica se a sílaba é oxítona.
         Sintaxe:
             verificacao = oxitona(palavra)
         Descrição:
@@ -528,7 +528,7 @@ def oxitona(silaba):
     return False
 
 def paroxitona(silaba):
-    """Verifica se a sílaba é paroxítona
+    """Verifica se a sílaba é paroxítona.
         Sintaxe:
             verificacao = paroxitona(palavra)
         Descrição:
@@ -545,7 +545,7 @@ def paroxitona(silaba):
     return False
 
 def verificar_terminacao(silaba,terminacao):
-    """Verifica se a sílaba tem uma determinada terminação
+    """Verifica se a sílaba tem uma determinada terminação.
         Sintaxe:
             verificacao = verificar_terminacao(palavra)
         Descrição:
@@ -565,7 +565,7 @@ def verificar_terminacao(silaba,terminacao):
         return terminacao == silaba[-t_terminacao:]
 
 def tonicidade(palavra):
-    """Verifica a tonicidade da palavra
+    """Verifica a tonicidade da palavra.
         Sintaxe:
             classificacao = tonicidade(palavra)
         Descrição:
